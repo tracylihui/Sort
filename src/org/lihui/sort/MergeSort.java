@@ -1,4 +1,13 @@
+package org.lihui.sort;
+/**
+ * 归并排序
+ * @author Tractli
+ *
+ * @param <T>
+ */
 public class MergeSort<T> {
+	//private static final int CUTOFF = 7;// 采用插入排序的阈值
+
 	public static <T extends Comparable<? super T>> void sort(T[] array) {
 		T[] aux = array.clone();
 		sort(array, aux, 0, array.length - 1);
@@ -8,9 +17,13 @@ public class MergeSort<T> {
 			T[] aux, int lo, int hi) {
 		if (lo >= hi)
 			return; // 如果下标大于上标，则返回
+		//TODO
+		// if (hi <= lo + CUTOFF - 1) Sort.selectionSort(array, lo, hi);
 		int mid = lo + (hi - lo) / 2;// 平分数组
 		sort(array, aux, lo, mid);// 循环对左侧元素排序
 		sort(array, aux, mid + 1, hi);// 循环对右侧元素排序
+		if (array[mid].compareTo(array[mid + 1]) <= 0)
+			return;
 		merge(array, aux, lo, mid, hi);// 对左右排好的序列进行合并
 	}
 

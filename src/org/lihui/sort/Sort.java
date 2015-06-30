@@ -1,3 +1,7 @@
+package org.lihui.sort;
+
+import org.lihui.util.SortUtil;
+
 public class Sort<T> {
 	/**
 	 * 选择排序
@@ -12,7 +16,7 @@ public class Sort<T> {
 				if (array[min].compareTo(array[j]) > 0)
 					min = j;
 			}
-			Swap(array, i, min);
+			SortUtil.swap(array, i, min);
 		}
 	}
 
@@ -26,8 +30,7 @@ public class Sort<T> {
 		for (int i = 1; i < n; i++) {
 			for (int j = i; j > 0; j--) {
 				if (array[j].compareTo(array[j - 1]) < 0) {
-					Swap(array, j, j - 1);
-					printArray(array);
+					SortUtil.swap(array, j, j - 1);
 				} else {
 					break;
 				}
@@ -36,6 +39,10 @@ public class Sort<T> {
 
 	}
 
+	/**
+	 * shell排序
+	 * @param array
+	 */
 	public static <T extends Comparable<? super T>> void shellSort(T[] array) {
 		int n = array.length;
 		int h = 1;
@@ -46,7 +53,7 @@ public class Sort<T> {
 			for (int i = 1; i < n; i++) {
 				for (int j = i; j >= h; j = j - h) {
 					if (array[j].compareTo(array[j - h]) < 0) {
-						Swap(array, j, j - h);
+						SortUtil.swap(array, j, j - h);
 					} else {
 						break;
 					}
@@ -64,19 +71,19 @@ public class Sort<T> {
 	public static <T extends Comparable<? super T>> void mergeSort(T[] array) {
 		MergeSort.sort(array);
 	}
-
-	private static <T extends Comparable<? super T>> void Swap(T[] array,
-			int i, int min) {
-		T temp = array[i];
-		array[i] = array[min];
-		array[min] = temp;
+	/**
+	 * 快速排序
+	 * @param array
+	 */
+	public static <T extends Comparable<? super T>> void quickSort(T[] array) {
+		QuickSort.sort(array);
 	}
-	public static <T extends Comparable<? super T>> void printArray(T[] array) {
-		System.out.print("[");
-		for (int i = 0; i < array.length; i++) {
-			System.out.print(array[i] + " ");
-		}
-		System.out.println("]");
+	/**
+	 * 堆排序
+	 * @param array
+	 */
+	public static <T extends Comparable<? super T>> void heapSort(T[] array) {
+		HeapSort.sort(array);
 	}
 
 }
